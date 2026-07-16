@@ -1,3 +1,4 @@
+#File name: guess_game_functions.py
 import time
 import random
 
@@ -19,22 +20,23 @@ def display_hint(guess_attempt: int, number_to_guess: int) -> None:
     if not number_to_guess % odd_nums == 0:
         number_to_guess_modulo = number_to_guess % odd_nums
         
-
     if 3 <= guess_attempt < 5:
         print(f"Hint: The number is \"{number_status}\"")
+        print(decorative_text)
         
     elif 5 <= guess_attempt < 8:
         print("Hints:\n"
             f"-The number is \"{number_status}\"\n"
             f"-The number has {the_number_has} in it")
+        print(decorative_text)
             
     elif guess_attempt >= 8:
         if number_to_guess_modulo == 0:
             print("Hints:\n"
                 f"- The number is \"{number_status}\"\n"
                 f"- The number has {the_number_has} in it\n"
-                f"- The number could divided evenly with {odd_nums}")
-        
+                f"- The number could divided evenly with {odd_nums}")        
+
         elif not number_to_guess_modulo == 0 and not number_to_guess < odd_nums:
             print("Hints:\n"
                 f"- The number is \"{number_status}\"\n"
@@ -46,6 +48,8 @@ def display_hint(guess_attempt: int, number_to_guess: int) -> None:
                 f"- The number is \"{number_status}\"\n"
                 f"- The number has {the_number_has} in it\n"
                 f"- The number smaller than {odd_nums}")
+        
+        print(decorative_text)
 
 def generate_min_and_max_num() -> tuple[int, int]:
     while True:
@@ -129,15 +133,35 @@ def display_score(guess_attempt: int, number_to_guess: int) -> None:
    
     if guess_attempt == 1:
         print("Incredible!!! \nIt only took you 1 time to guess it")
+        print(decorative_text)
 
     else:
         print(f"You guessed it in {guess_attempt} attempts.")
         print(f"Well done, \"{number_to_guess}\" is the correct number")
+        print(decorative_text)
 
+def asking_for_playing_again() -> bool:
+
+    while True:
+        user_decision: str = input("Would you like to play again? (yes or no)\nMy answer: ").lower()
+
+        if user_decision in ["yes", "y"]:
+            print("Let's play again!")
+            print(decorative_text)
+            return True
+        
+        elif user_decision in ["no", "n"]:
+            print("Alright then. Good bye and see you again!")
+            print(decorative_text)
+            return False
+        
+        else:
+            print("You've entered wrong anwer, please try again and type \"yes\" or \"no\"")
+            print(decorative_text)
+            
 def main() -> None:
-    #Test the functions here!
+    #Test the function here!
     loading_efect()
-    print(generate_min_and_max_num())
 
 if __name__ == "__main__":
     main()
